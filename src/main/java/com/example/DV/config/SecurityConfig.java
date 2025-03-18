@@ -1,4 +1,4 @@
-package com.example.DV.infrastructure.security;
+package com.example.DV.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

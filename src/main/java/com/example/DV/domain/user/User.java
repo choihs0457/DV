@@ -1,15 +1,16 @@
-package com.example.DV.domain.model;
+package com.example.DV.domain.user;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserEntity {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
@@ -24,7 +25,7 @@ public class UserEntity {
     private Role role;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private UserProfileEntity userProfile;
+    private UserProfile userProfile;
 
     public enum Role {
         ROLE_USER,

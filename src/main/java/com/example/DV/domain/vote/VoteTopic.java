@@ -1,4 +1,4 @@
-package com.example.DV.domain.model;
+package com.example.DV.domain.vote;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,12 +6,13 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table(name = "vote_topic")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VoteTopicEntity {
+public class VoteTopic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long voteTopicId;
@@ -22,5 +23,4 @@ public class VoteTopicEntity {
     private LocalDateTime startTime; // 투표 시작 시간
     private LocalDateTime endTime; // 투표 시작 시간
 
-    private boolean isActive; // 투표 진행 여부
 }

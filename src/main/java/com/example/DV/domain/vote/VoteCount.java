@@ -1,22 +1,23 @@
-package com.example.DV.domain.model;
+package com.example.DV.domain.vote;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
+@Table(name = "vote_count")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class VoteCountEntity {
+public class VoteCount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long voteCountId;
 
     @ManyToOne
     @JoinColumn(name = "vote_topic_id", nullable = false)
-    private VoteTopicEntity voteTopic;
+    private VoteTopic voteTopic;
 
     @Column(nullable = false)
     private String voteOption;
