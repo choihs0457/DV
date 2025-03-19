@@ -1,4 +1,8 @@
 package com.example.DV.application.port.out;
 
-public class VoteRepositoryPort {
+import com.example.DV.domain.vote.VoteResult;
+
+public interface VoteRepositoryPort {
+    // VoteResult 저장, 조회 등
+    VoteResult save(VoteResult voteResult);
 }

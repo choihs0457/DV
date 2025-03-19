@@ -1,11 +1,16 @@
+# HELP 문서
 HELP.md
-.gradle
+
+# Gradle
+.gradle/
 build/
 !gradle/wrapper/gradle-wrapper.jar
+gradle-app.setting
+gradle-debug.log
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### Logs ###
+# 로그 파일
 logs/
 *.log
 !logs/.keep
@@ -13,32 +18,25 @@ logs/
 *.seed
 *.state
 
-### Environment Variables ###
+# 환경변수 파일
 .env
 .env.local
 .env.*.local
 
-### Gradle ###
-.gradle/
-build/
-!gradle/wrapper/gradle-wrapper.jar
-gradle-app.setting
-gradle-debug.log
-
-### STS ###
+# STS (Spring Tool Suite)
 .apt_generated
 .classpath
 .factorypath
 .project
-.settings
+.settings/
 .springBeans
 .sts4-cache
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
@@ -46,31 +44,31 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### Eclipse ###
+# Eclipse
 .classpath
 .project
 .settings/
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
 
-### VS Code ###
+# VS Code
 .vscode/
 
-### macOS ###
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 
-### Windows ###
+# Windows
 Thumbs.db
 Desktop.ini
 
-### Java ###
+# Java 컴파일 산출물
 *.class
 *.jar
 *.war

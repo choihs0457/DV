@@ -4,8 +4,9 @@ import com.example.DV.domain.vote.VoteCount;
 import com.example.DV.domain.vote.VoteTopic;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import java.util.Optional;
+
 
 public interface VoteCountRepository extends JpaRepository<VoteCount, Long> {
-    List<VoteCount> findByVoteTopic(VoteTopic voteTopic);
+    Optional<VoteCount> findByVoteTopicAndVoteOption(VoteTopic topic, String voteOption);
 }

@@ -1,15 +1,24 @@
 package com.example.DV.adapter.in.rest;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.DV.application.port.in.VoteUseCase;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/votes")
+@RequiredArgsConstructor
 public class VoteController {
-    @GetMapping("/hello")
-    public String hello(){
-        return "Hello My Project!";
+
+    private final VoteUseCase voteUseCase;
+
+    @PostMapping
+    public ResponseEntity<?> doVote(@RequestParam Long userId,
+                                    @RequestParam Long topicId,
+                                    @RequestParam String option) {
+        voteUseCase.doVote(userId, topicId, option);
+        return ResponseEntity.ok("투표 완료");
     }
+
 }
