@@ -1,9 +1,9 @@
 package com.example.DV.application.service;
 
-import com.example.DV.adapter.out.persistence.UserRepository;
-import com.example.DV.adapter.out.persistence.VoteCountRepository;
-import com.example.DV.adapter.out.persistence.VoteResultRepository;
-import com.example.DV.adapter.out.persistence.VoteTopicRepository;
+import com.example.DV.adapters.out.persistence.UserRepository;
+import com.example.DV.adapters.out.persistence.VoteCountRepository;
+import com.example.DV.adapters.out.persistence.VoteResultRepository;
+import com.example.DV.adapters.out.persistence.VoteTopicRepository;
 import com.example.DV.application.port.in.VoteUseCase;
 import com.example.DV.domain.user.User;
 import com.example.DV.domain.vote.VoteCount;
@@ -11,8 +11,6 @@ import com.example.DV.domain.vote.VoteResult;
 import com.example.DV.domain.vote.VoteTopic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor

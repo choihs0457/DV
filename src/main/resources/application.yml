@@ -2,6 +2,10 @@ server:
   port: 8080
 
 spring:
+  config:
+    import: optional:file:./.env[.properties]
+  application:
+    name: DV
   datasource:
     url: ${ORACLE_DB_URL}
     username: ${ORACLE_DB_USERNAME}

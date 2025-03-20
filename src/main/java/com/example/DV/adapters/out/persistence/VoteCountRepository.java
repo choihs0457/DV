@@ -1,4 +1,4 @@
-package com.example.DV.adapter.out.persistence;
+package com.example.DV.adapters.out.persistence;
 
 import com.example.DV.domain.vote.VoteCount;
 import com.example.DV.domain.vote.VoteTopic;

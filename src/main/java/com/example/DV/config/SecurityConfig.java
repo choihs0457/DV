@@ -12,13 +12,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // ✅ CSRF 보호 비활성화
-                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable())) // ✅ H2 콘솔 접근 허용
+                .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/h2-console/**").permitAll() // ✅ H2 콘솔 접근 허용
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
                 );
-
         return http.build();
     }
 }
