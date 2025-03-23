@@ -1,37 +1,36 @@
 package com.example.DV.application.service;
 
 import com.example.DV.application.dto.SignUpRequest;
+import com.example.DV.application.port.out.UserRepository;
 import com.example.DV.domain.user.User;
-import com.example.DV.adapters.out.persistence.UserRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final UserRepository userRepository; // 포트(인터페이스)
+    private final PasswordEncoder passwordEncoder;
 
-    public User signUp(SignUpRequest request) {
+    public UserService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public User signup(SignUpRequest request) {
         // 이메일 중복 체크
-        userRepository.findByEmail(request.getEmail())
-                .ifPresent(user -> {
-                    throw new IllegalArgumentException("이미 등록된 이메일입니다.");
-                });
-
-        // 비밀번호 암호화
-        String encodedPassword = passwordEncoder.encode(request.getPassword());
-
-        // 기본 역할은 ROLE_USER로 지정
-        User newUser = User.builder()
+        if(userRepository.findByEmail(request.getEmail()).isPresent()){
+            throw new RuntimeException("이미 존재하는 사용자입니다.");
+        }
+        // 신규 사용자 생성 (기본 role: ROLE_USER)
+        User user = User.builder()
                 .email(request.getEmail())
                 .nickname(request.getNickname())
-                .password(encodedPassword)
+                .password(passwordEncoder.encode(request.getPassword()))
                 .role("ROLE_USER")
                 .build();
-
-        return userRepository.save(newUser);
+        userRepository.save(user);
+        return user;
     }
 }

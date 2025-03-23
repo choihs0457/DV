@@ -2,15 +2,23 @@ server:
   port: 8080
 
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: public
+        show_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   config:
     import: optional:file:./.env[.properties]
   application:
     name: DV
   datasource:
-    url: ${ORACLE_DB_URL}
-    username: ${ORACLE_DB_USERNAME}
-    password: ${ORACLE_DB_PASSWORD}
-    driver-class-name: oracle.jdbc.OracleDriver
+    url: ${POSTGRES_DB_URL}
+    username: ${POSTGRES_DB_USERNAME}
+    password: ${POSTGRES_DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
   security:
     oauth2:
       client:
@@ -29,11 +37,3 @@ spring:
             token-uri: https://www.googleapis.com/oauth2/v4/token
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
             user-name-attribute: sub
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
-    show-sql: true
