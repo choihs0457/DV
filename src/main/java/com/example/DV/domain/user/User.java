@@ -1,10 +1,13 @@
 package com.example.DV.domain.user;
 
+import com.example.DV.domain.vote.VoteResult;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import jakarta.persistence.*;
-import lombok.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,17 +20,30 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long userId;
 
+    @NotNull
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @NotNull
+    @Column(nullable = false, unique = true)
     private String nickname;
 
+    @NotNull
     @Column(nullable = false)
     private String password;
 
+    @NotNull
     @Column(nullable = false)
-    private String role; // 예: ROLE_USER, ROLE_ADMIN 등
+    private String role;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UserProfile userProfile;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
+    private List<VoteResult> voteResults = new ArrayList<>();
 }
