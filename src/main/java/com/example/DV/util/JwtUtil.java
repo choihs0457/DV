@@ -2,6 +2,8 @@ package com.example.DV.util;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.Getter;
+
 import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
@@ -9,10 +11,11 @@ import java.util.Date;
 public class JwtUtil {
 
     private static final long EXPIRATION_TIME = 86400000; // 1일 (밀리초 단위)
-    // 환경 변수로부터 JWT_SECRET 값을 가져오고, 없으면 기본값 사용
     private static final String SECRET = System.getenv("JWT_SECRET") != null
             ? System.getenv("JWT_SECRET")
             : "ReplaceThisWithASecureRandomKeyOfSufficientLength1234";
+    // JWT 검증을 위한 키 반환 메소드
+    @Getter
     private static final Key key = Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
 
     public static String generateToken(String email) {
@@ -30,4 +33,5 @@ public class JwtUtil {
                 .signWith(key)
                 .compact();
     }
+
 }
